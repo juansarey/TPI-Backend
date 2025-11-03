@@ -15,18 +15,6 @@
     <name>api-gateway</name>
     <description>API Gateway para el TPI de Transporte</description>
     <url/>
-    <licenses>
-        <license/>
-    </licenses>
-    <developers>
-        <developer/>
-    </developers>
-    <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
-    </scm>
     
     <properties>
         <java.version>21</java.version>
@@ -37,7 +25,8 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2024.0.0</version> 
+                <!-- Use Spring Cloud 2023.0.x line which is compatible with Spring Boot 3.3.x -->
+                <version>2023.0.6</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -48,6 +37,16 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway-mvc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents.client5</groupId>
+            <artifactId>httpclient5</artifactId>
         </dependency>
 
         <dependency>
