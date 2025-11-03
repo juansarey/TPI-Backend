@@ -4,3 +4,10 @@ server:
 spring:
   application:
     name: operaciones-service
+
+  # --- ESTO LO ACTIVE PARA COMPROBAR QUE FUNCIONE DOCKER SACAR DESPUES ---
+  # Desactiva la configuración automática de la base de datos (temporalmente)
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
