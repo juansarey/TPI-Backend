@@ -4,10 +4,17 @@ server:
 spring:
   application:
     name: maestros-service
-
-  # --- ESTO LO ACTIVE PARA COMPROBAR QUE FUNCIONE DOCKER SACAR DESPUES ---
-  # Desactiva la configuración automática de la base de datos (temporalmente)
-  autoconfigure:
-    exclude:
-      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
-      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+# --- CONFIGURACIÓN DE LA BASE DE DATOS ---
+  datasource:
+    url: jdbc:postgresql://maestros-db:5432/maestrosdb
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+# --- CONFIGURACIÓN DE JPA (Hibernate) ---
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true

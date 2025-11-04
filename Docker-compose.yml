@@ -10,6 +10,8 @@ services:
       - "8081:8081"
     networks:
       - tpi-network
+    depends_on:
+      - maestros-db
 
   # Servicio 2: Operaciones y Logística
   operaciones-service:
@@ -19,6 +21,8 @@ services:
       - "8082:8082"
     networks:
       - tpi-network
+    depends_on:
+      - operaciones-db
 
   # Servicio 3: API Gateway
   api-gateway:
@@ -34,7 +38,41 @@ services:
       - maestros-service
       - operaciones-service
 
+  # Bases de datos PostgreSQL, una por microservicio
+  maestros-db:
+    image: postgres:15
+    container_name: maestros-db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: maestrosdb
+    # opcional: expone a host en puerto 5433 (puedes quitar si no necesitas acceso desde host)
+    ports:
+      - "5433:5432"
+    volumes:
+      - maestros-db-data:/var/lib/postgresql/data
+    networks:
+      - tpi-network
+
+  operaciones-db:
+    image: postgres:15
+    container_name: operaciones-db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: opsdb
+    ports:
+      - "5434:5432"
+    volumes:
+      - operaciones-db-data:/var/lib/postgresql/data
+    networks:
+      - tpi-network
+
 # Definimos una red interna para que los contenedores se comuniquen
 networks:
   tpi-network:
     driver: bridge
+# Volúmenes para persistir los datos de las BDs
+volumes:
+  maestros-db-data:
+  operaciones-db-data:

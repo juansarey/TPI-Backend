@@ -5,9 +5,16 @@ spring:
   application:
     name: operaciones-service
 
-  # --- ESTO LO ACTIVE PARA COMPROBAR QUE FUNCIONE DOCKER SACAR DESPUES ---
-  # Desactiva la configuración automática de la base de datos (temporalmente)
-  autoconfigure:
-    exclude:
-      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
-      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+  datasource:
+    url: jdbc:postgresql://operaciones-db:5432/opsdb
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
