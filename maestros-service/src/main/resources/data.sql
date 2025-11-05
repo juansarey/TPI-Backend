@@ -48,8 +48,8 @@ INSERT INTO contenedor (public_id, identificacion_unica, peso_kg, volumen_m3, es
 (UUID(), 'CONT-002', 800.0, 6.5, 'Entregado en depósito', 2),
 (UUID(), 'CONT-003', 1200.0, 8.0, 'Retirado de depósito', 3),
 (UUID(), 'CONT-004', 700.0, 5.0, 'Retirado de origen', 4),
-(UUID(), 'CONT-005', 900.0, 20.0, 'Retirado de origen', 2), -- Ajustado volumen de 200000 a 20.0
-(UUID(), 'CONT-006', 10000.0, 40.0, 'Retirado de origen', 1), -- Ajustado peso de 1000000 a 10000.0
+(UUID(), 'CONT-005', 900.0, 20.0, 'Retirado de origen', 2), 
+(UUID(), 'CONT-006', 10000.0, 40.0, 'Retirado de origen', 1), 
 (UUID(), 'CONT-007', 1300.0, 9.0, 'Entregado en destino', 1),
 (UUID(), 'CONT-008', 950.0, 6.8, 'Entregado en destino', 2),
 (UUID(), 'CONT-009', 620.0, 4.0, 'Pendiente de despacho', 1),
