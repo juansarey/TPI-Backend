@@ -1,20 +1,15 @@
-server:
-  port: 8081
-
 spring:
   application:
     name: maestros-service
-# --- CONFIGURACIÓN DE LA BASE DE DATOS ---
   datasource:
-    url: jdbc:postgresql://maestros-db:5432/maestrosdb
-    username: admin
-    password: admin
-    driver-class-name: org.postgresql.Driver
-# --- CONFIGURACIÓN DE JPA (Hibernate) ---
+    url: jdbc:postgresql://localhost:5432/maestros_db
+    username: postgres
+    password: postgres
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
     properties:
-      hibernate:
-        format_sql: true
+      hibernate.format_sql: true
+server:
+  port: 8081

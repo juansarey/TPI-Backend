@@ -1,0 +1,37 @@
+### Listar clientes
+GET http://localhost:8081/api/maestros/clientes
+
+### Crear cliente
+POST http://localhost:8081/api/maestros/clientes
+Content-Type: application/json
+
+{
+  "nombre": "Ada",
+  "apellido": "Lovelace",
+  "email": "ada@example.com",
+  "telefono": "123456",
+  "direccion": "Baker Street 221B"
+}
+
+### Obtener cliente por publicId (reemplaza {{PID}})
+GET http://localhost:8081/api/maestros/clientes/{{PID}}
+
+### Actualizar cliente (reemplaza {{PID}})
+PUT http://localhost:8081/api/maestros/clientes/{{PID}}
+Content-Type: application/json
+
+{
+  "nombre": "Ada",
+  "apellido": "L",
+  "telefono": "999",
+  "direccion": "Nueva dirección"
+}
+
+### Eliminar cliente (reemplaza {{PID}})
+DELETE http://localhost:8081/api/maestros/clientes/{{PID}}
+
+### Contenedores
+GET http://localhost:8081/api/maestros/contenedores
+
+### Camiones
+GET http://localhost:8081/api/maestros/camiones
