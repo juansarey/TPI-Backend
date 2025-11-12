@@ -4,17 +4,36 @@ server:
 spring:
   application:
     name: maestros-service
-# --- CONFIGURACIÓN DE LA BASE DE DATOS ---
+
   datasource:
-    url: jdbc:postgresql://maestros-db:5432/maestrosdb
-    username: admin
-    password: admin
-    driver-class-name: org.postgresql.Driver
-# --- CONFIGURACIÓN DE JPA (Hibernate) ---
+    # Base H2 persistente en un volumen montado en /data
+    url: jdbc:h2:file:/data/maestrosdb;MODE=MySQL;AUTO_SERVER=TRUE;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: update     # en dev estable; evitá create-drop si querés conservar datos
+    database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
     properties:
       hibernate:
         format_sql: true
+    defer-datasource-initialization: true
+
+  h2:
+    console:
+      enabled: true
+      path: /h2
+
+  sql:
+    init:
+      mode: always
+
+  jackson:
+    time-zone: America/Argentina/Buenos_Aires
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

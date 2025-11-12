@@ -1,78 +1,51 @@
+version: "3.9"
+
 services:
-  # Servicio 1: Maestros y Costos
+  # Servicio 1: Maestros y Costos (H2 en archivo persistente)
   maestros-service:
-    # Construye la imagen usando el Dockerfile dentro de la carpeta ./maestros-service
     build: ./maestros-service
-    # Este es el "hostname" que el API Gateway usará para encontrarlo
     container_name: maestros-service
     ports:
-      # Expone el puerto 8081 del contenedor al puerto 8081 de tu máquina
       - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+    volumes:
+      - maestros-data:/data       # H2 guarda /data/maestrosdb.*
     networks:
       - tpi-network
-    depends_on:
-      - maestros-db
+    restart: unless-stopped
 
-  # Servicio 2: Operaciones y Logística
+  # Servicio 2: Operaciones y Logística (H2 en archivo persistente)
   operaciones-service:
     build: ./operaciones-service
     container_name: operaciones-service
     ports:
       - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+    volumes:
+      - operaciones-data:/data    # H2 guarda /data/opsdb.*
     networks:
       - tpi-network
-    depends_on:
-      - operaciones-db
+    restart: unless-stopped
 
-  # Servicio 3: API Gateway
+  # Servicio 3: API Gateway (no usa DB)
   api-gateway:
     build: ./api-gateway
     container_name: api-gateway
     ports:
-      # Expone el puerto 9000 (el único puerto público)
-      - "9000:9000"
+      - "9000:9000"               # puerto público único
     networks:
       - tpi-network
-    # El Gateway no debe iniciar hasta que los otros servicios estén listos
     depends_on:
       - maestros-service
       - operaciones-service
+    restart: unless-stopped
 
-  # Bases de datos PostgreSQL, una por microservicio
-  maestros-db:
-    image: postgres:15
-    container_name: maestros-db
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-      POSTGRES_DB: maestrosdb
-    # opcional: expone a host en puerto 5433 (puedes quitar si no necesitas acceso desde host)
-    ports:
-      - "5433:5432"
-    volumes:
-      - maestros-db-data:/var/lib/postgresql/data
-    networks:
-      - tpi-network
-
-  operaciones-db:
-    image: postgres:15
-    container_name: operaciones-db
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-      POSTGRES_DB: opsdb
-    ports:
-      - "5434:5432"
-    volumes:
-      - operaciones-db-data:/var/lib/postgresql/data
-    networks:
-      - tpi-network
-
-# Definimos una red interna para que los contenedores se comuniquen
 networks:
   tpi-network:
     driver: bridge
-# Volúmenes para persistir los datos de las BDs
+
 volumes:
-  maestros-db-data:
-  operaciones-db-data:
+  maestros-data:
+  operaciones-data:

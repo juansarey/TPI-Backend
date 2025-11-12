@@ -6,15 +6,39 @@ spring:
     name: operaciones-service
 
   datasource:
-    url: jdbc:postgresql://operaciones-db:5432/opsdb
-    username: admin
-    password: admin
-    driver-class-name: org.postgresql.Driver
+    # H2 persistente dentro del contenedor (montá un volumen en /data)
+    url: jdbc:h2:file:/data/opsdb;MODE=MySQL;AUTO_SERVER=TRUE;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
 
   jpa:
     hibernate:
       ddl-auto: update
+    database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
     properties:
       hibernate:
         format_sql: true
+    defer-datasource-initialization: true   # corre data.sql tras crear el schema
+
+  h2:
+    console:
+      enabled: true
+      path: /h2
+
+  sql:
+    init:
+      mode: always
+
+  jackson:
+    time-zone: America/Argentina/Buenos_Aires
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+# Si este servicio consume Maestros, te conviene centralizar las URLs acá
+clients:
+  maestros:
+    base-url: http://maestros-service:8081

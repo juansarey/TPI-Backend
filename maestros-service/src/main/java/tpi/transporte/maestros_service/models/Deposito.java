@@ -1,4 +1,4 @@
-package tpi.transporte.maestros_service.entities;
+package tpi.transporte.maestros_service.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

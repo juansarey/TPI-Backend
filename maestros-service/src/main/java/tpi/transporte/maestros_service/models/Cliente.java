@@ -1,6 +1,5 @@
-package tpi.transporte.maestros_service.entities;
+package tpi.transporte.maestros_service.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,34 +8,38 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "contenedor")
+@Table(name = "cliente")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Contenedor {
+public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_contenedor")
-    private Long idContenedor;
+    @Column(name = "id_cliente")
+    private Long idCliente;
 
     @Column(name = "public_id", unique = true, nullable = false)
     private String publicId;
 
-    @Column(name = "identificacion_unica", unique = true)
-    private String identificacionUnica;
+    @Column(name = "nombre")
+    private String nombre;
 
-    @Column(name = "peso_kg", nullable = false)
-    private Double pesoKg;
+    @Column(name = "apellido")
+    private String apellido;
 
-    @Column(name = "volumen_m3", nullable = false)
-    private Double volumenM3;
+    @Column(name = "email", unique = true, nullable = false)
+    private String email;
 
-    @Column(name = "estado")
-    private String estado;
+    @Column(name = "telefono")
+    private String telefono;
+
+    @Column(name = "direccion")
+    private String direccion;
 
     @CreationTimestamp
     @Column(name = "creado_at", updatable = false)
@@ -46,11 +49,9 @@ public class Contenedor {
     @Column(name = "actualizado_at")
     private Timestamp actualizadoAt;
 
-    // Relación: Muchos contenedores pertenecen a un cliente
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_cliente", nullable = false)
-    @JsonIgnore // Evita bucles infinitos al serializar a JSON
-    private Cliente cliente;
+    // Relación: Un cliente puede tener muchos contenedores
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Contenedor> contenedores;
 
     @PrePersist
     public void prePersist() {
