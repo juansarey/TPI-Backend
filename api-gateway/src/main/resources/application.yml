@@ -1,4 +1,4 @@
-# Puerto en el que correrá el API Gateway
+# api-gateway/src/main/resources/application.yml
 server:
   port: 9000
 
@@ -9,23 +9,21 @@ spring:
   cloud:
     gateway:
       routes:
-        # Ruta para el Microservicio de Maestros y Costos
         - id: maestros_route
-          # La URI será el nombre del servicio en Docker
           uri: http://maestros-service:8081
           predicates:
-            # Si la petición empieza con /maestro/
             - Path=/maestro/**
           filters:
-            # Re-escribe la URL quitando /maestro
             - StripPrefix=1
 
-        # Ruta para el Microservicio de Operaciones y Logística
         - id: operaciones_route
           uri: http://operaciones-service:8082
           predicates:
-            # Si la petición empieza con /operaciones/
             - Path=/operaciones/**
           filters:
-            # Re-escribe la URL quitando /operaciones
             - StripPrefix=1
+
+  security:
+    user:
+      name: user
+      password: password

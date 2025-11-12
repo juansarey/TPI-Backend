@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   # Servicio 1: Maestros y Costos (H2 en archivo persistente)
   maestros-service:
@@ -24,7 +22,7 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=default
     volumes:
-      - operaciones-data:/data    # H2 guarda /data/opsdb.*
+      - operaciones-data:/data    # H2 guarda /data/operacionesdb.*
     networks:
       - tpi-network
     restart: unless-stopped

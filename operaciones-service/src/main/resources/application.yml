@@ -5,17 +5,17 @@ spring:
   application:
     name: operaciones-service
 
+
   datasource:
-    # H2 persistente dentro del contenedor (montá un volumen en /data)
-    url: jdbc:h2:file:/data/opsdb;MODE=MySQL;AUTO_SERVER=TRUE;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:file:/data/operacionesdb;MODE=MySQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1
     driver-class-name: org.h2.Driver
     username: sa
-    password:
+    password: 
+
 
   jpa:
     hibernate:
       ddl-auto: update
-    database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
     properties:
       hibernate:
@@ -26,6 +26,10 @@ spring:
     console:
       enabled: true
       path: /h2
+
+      #sacar esta linea mas adelante si no se necesita acceso remoto al H2
+      settings:
+        web-allow-others: true  
 
   sql:
     init:
