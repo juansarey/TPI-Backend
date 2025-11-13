@@ -27,20 +27,12 @@ public class Tramo {
     private Long camionId;
 
     /** Logical reference to the origin depot (UUID) if applicable.  Nullable for origin. */
-    @Column(name = "origen_deposito_ref")
-    private Long origenDepositoId;
+    @Column(name = "origen")
+    private Long origen;
 
     /** Logical reference to the destination depot (UUID) if applicable.  Nullable for final destination. */
-    @Column(name = "destino_deposito_ref")
-    private Long destinoDepositoId;
-
-    /** Estimated distance in metres for this segment. */
-    @Column(name = "distancia_m")
-    private Double distanciaM;
-
-    /** Estimated duration in seconds for this segment. */
-    @Column(name = "duracion_sec")
-    private Long duracionSec;
+    @Column(name = "destino")
+    private Long destino;
 
     /** Estimated cost for this segment. */
     @Column(name = "costo_aprox")
@@ -51,19 +43,18 @@ public class Tramo {
     private Double costoReal;
 
     /** Estimated start date/time for the segment. */
-    @Column(name = "fecha_inicio_estimada")
-    private LocalDateTime fechaInicioEstimada;
+    @Column(name = "fecha_hora_inicio_estimada")
+    private LocalDateTime fechaHoraInicioEstimada;
 
     /** Real start date/time recorded when the segment begins. */
-    @Column(name = "fecha_inicio")
-    private LocalDateTime fechaInicio;
-
+    @Column(name = "fecha_hora_inicio")
+    private LocalDateTime fechaHoraInicio;
     /** Estimated finish date/time for the segment. */
-    @Column(name = "fecha_fin_estimada")
-    private LocalDateTime fechaFinEstimada;
+    @Column(name = "fecha_hora_fin_estimada")
+    private LocalDateTime fechaHoraFinEstimada;
     /** Real finish date/time recorded when the segment ends. */
-    @Column(name = "fecha_fin")
-    private LocalDateTime fechaFin;
+    @Column(name = "fecha_hora_fin")
+    private LocalDateTime fechaHoraFin;
 
         /** Parent route to which this segment belongs (many segments per route). */
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

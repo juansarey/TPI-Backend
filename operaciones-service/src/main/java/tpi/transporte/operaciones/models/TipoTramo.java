@@ -12,6 +12,7 @@ public class TipoTramo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_tipo_tramo")
     private Long id;
 
     /** Nombre del tipo de tramo (por ejemplo: ORIGEN_A_DEPOSITO, DEPOSITO_A_DESTINO). */

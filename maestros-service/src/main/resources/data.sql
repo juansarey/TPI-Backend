@@ -1,56 +1,31 @@
--- =================================================================
--- CLIENTES
--- (Campos ERD: public_id, nombre, apellido, email, telefono, direccion)
--- =================================================================
-INSERT INTO cliente (public_id, nombre, apellido, email, telefono, direccion) VALUES
-(UUID(), 'Juan', 'Pérez', 'juan@example.com', '111-2222', 'Av. Siempre Viva 123'),
-(UUID(), 'Ana', 'Gómez', 'ana@example.com', '333-4444', 'Calle Falsa 456'),
-(UUID(), 'Carlos', 'Díaz', 'carlos@example.com', '555-6666', 'Ruta 7 km 102'),
-(UUID(), 'Laura', 'Torres', 'laura@example.com', '777-8888', 'Av. Corrientes 2400');
+INSERT INTO tarifa (id_tarifa, costo_por_km, costo_base_fijo) VALUES
+(1, 10.0, 50.0),
+(2, 12.5, 60.0),
+(3, 15.0, 75.0);
 
--- =================================================================
--- CAMIONES
--- (Campos ERD: public_id, dominio, nombre_transportista, capacidad_peso_kg, capacidad_volumen_m3, disponibilidad)
--- =================================================================
-INSERT INTO camion (public_id, dominio, nombre_transportista, capacidad_peso_kg, capacidad_volumen_m3, disponibilidad, costo_base_km, consumo_1_km) VALUES
-(UUID(), 'AA123AA', 'Transportes Veloz', 12000.0, 90.0, TRUE, 150.0, 0.3),
-(UUID(), 'AB456BC', 'Logística Sur', 15000.0, 100.0, FALSE, 180.0, 0.4),
-(UUID(), 'AC789CD', 'Cargas Rápidas', 8000.0, 60.0, TRUE, 130.0, 0.25),
-(UUID(), 'AD012DE', 'Fletes Express', 2000.0, 1000.0, TRUE, 200.0, 0.5);
+INSERT INTO camion (id_camion, nombre_transportista, capacidad_peso_kg, telefono, capacidad_volumen_m3, disponibilidad, costo_base_km) VALUES
+(1, 'Joaquin', 10000.0, '555-1111', 60.0, true, 1.5),
+(2, 'Juan', 15000.0, '555-2222', 80.0, true, 2.0),
+(3, 'Lucas', 12000.0, '555-3333', 70.0, false, 1.8);
 
--- =================================================================
--- DEPÓSITOS
--- (Campos ERD: public_id, nombre, direccion, latitud, longitud, costo_diario)
--- =================================================================
-INSERT INTO deposito (public_id, nombre, direccion, latitud, longitud, costo_diario) VALUES
-(UUID(), 'Depósito Córdoba Centro', 'Av. Siempre Viva 123', -31.4201, -64.1888, 500.0),
-(UUID(), 'Depósito Rosario Norte', 'Calle Falsa 456', -32.9511, -60.6677, 450.0),
-(UUID(), 'Depósito Mendoza Este', 'Ruta 7 km 102', -32.8915, -68.8279, 480.0),
-(UUID(), 'Depósito CABA Central', 'Av. Corrientes 2400', -34.6045, -58.3821, 600.0),
-(UUID(), 'Depósito Salta', 'Mitre 321', -24.7850, -65.4238, 400.0);
+INSERT INTO cliente (id_cliente, nombre, apellido, telefono, direccion) VALUES
+(1, 'Alberto', 'Perez', '555-1234', '123 Main St'),
+(2, 'Maria', 'Gomez', '555-5678', '456 Elm St'),
+(3, 'Carlos', 'Lopez', '555-8765', '789 Oak St');
 
--- =================================================================
--- TARIFAS
--- (Campos ERD: public_id, descripcion, rangos..., costos...)
--- =================================================================
-INSERT INTO tarifa (public_id, descripcion, rango_peso_min_kg, rango_peso_max_kg, rango_volumen_min_m3, rango_volumen_max_m3, costo_base_fijo, costo_km_base) VALUES
-(UUID(), 'Tarifa Liviana Local', 0, 1000, 0, 10, 500.0, 10.0),
-(UUID(), 'Tarifa Media Distancia', 1001, 5000, 10.1, 50, 1000.0, 8.5),
-(UUID(), 'Tarifa Pesada Larga Distancia', 5001, 20000, 50.1, 100, 2500.0, 7.0);
+INSERT INTO estado_contenedor(id_estado, nombre) VALUES
+(1, 'Retirado de origen'),
+(2, 'Entregado en deposito'),
+(3, 'Retirado de deposito'),
+(4, 'Entregado en destino'),
+(5, 'Pendiente de despacho');
 
--- =================================================================
--- CONTENEDORES
--- (Campos ERD: public_id, identificacion_unica, peso_kg, volumen_m3, estado, id_cliente)
--- IDs de cliente (1=Juan, 2=Ana, 3=Carlos, 4=Laura)
--- =================================================================
-INSERT INTO contenedor (public_id, identificacion_unica, peso_kg, volumen_m3, estado, id_cliente) VALUES
-(UUID(), 'CONT-001', 500.0, 4.0, 'Retirado de origen', 1),
-(UUID(), 'CONT-002', 800.0, 6.5, 'Entregado en depósito', 2),
-(UUID(), 'CONT-003', 1200.0, 8.0, 'Retirado de depósito', 3),
-(UUID(), 'CONT-004', 700.0, 5.0, 'Retirado de origen', 4),
-(UUID(), 'CONT-005', 900.0, 20.0, 'Retirado de origen', 2), 
-(UUID(), 'CONT-006', 10000.0, 40.0, 'Retirado de origen', 1), 
-(UUID(), 'CONT-007', 1300.0, 9.0, 'Entregado en destino', 1),
-(UUID(), 'CONT-008', 950.0, 6.8, 'Entregado en destino', 2),
-(UUID(), 'CONT-009', 620.0, 4.0, 'Pendiente de despacho', 1),
-(UUID(), 'CONT-010', 10.0, 10.0, 'Pendiente de despacho', 1);
+INSERT INTO contenedor(id_contenedor, peso_kg, volumen_m3, id_estado) VALUES
+(1, 2000.0, 12.0, 1),
+(2, 2500.0, 15.0, 2),
+(3, 1800.0, 10.0, 3);
+
+INSERT INTO deposito (id_deposito, nombre, direccion, latitud, longitud, costo_diario) VALUES
+(1, 'Deposito Central', 'Av. Central 1000', -34.6037, -58.3816, 150.0),
+(2, 'Deposito Norte', 'Calle Norte 2000', -34.5678, -58.4567, 120.0),
+(3, 'Deposito Sur', 'Ruta Sur 3000', -34.6789, -58.5678, 130.0);

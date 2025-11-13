@@ -9,19 +9,14 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(name = "estado_contenedor")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Tarifa {
-
+public class EstadoContenedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_tarifa")
-    private Long idTarifa;
-
-    @Column(name = "costo_base_fijo")
-    private Double costoBaseFijo;
-
-    @Column(name = "costo_por_km")
-    private Double costoKm;
-
+    private Long id;
+    
+    @Column(name = "nombre")
+    private String nombre;
 }

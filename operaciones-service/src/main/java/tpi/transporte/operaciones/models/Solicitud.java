@@ -17,6 +17,7 @@ public class Solicitud {
     /** Primary key for internal use. */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_solicitud")
     private Long id;
 
     /** Logical reference to the client (UUID from Maestro). */
@@ -36,16 +37,8 @@ public class Solicitud {
     private Double costoEstimado;
 
     /** Estimated time (in minutes) for the entire delivery. */
-    @Column(name = "tiempo_estimado_min")
-    private Long tiempoEstimadoMin;
-
-    /** Real cost calculated after completion. */
-    @Column(name = "costo_final")
-    private Double costoFinal;
-
-    /** Real time (in minutes) measured after completion. */
-    @Column(name = "tiempo_real_min")
-    private Long tiempoRealMin;
+    @Column(name = "tiempo_estimado")
+    private Double tiempoEstimado;
 
     @OneToOne(mappedBy = "solicitud", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Ruta ruta;

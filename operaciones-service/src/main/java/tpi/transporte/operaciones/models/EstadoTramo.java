@@ -12,6 +12,7 @@ public class EstadoTramo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_estado")
     private Long id;
 
     @Column(nullable = false, unique = true)
