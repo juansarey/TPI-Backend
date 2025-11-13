@@ -28,11 +28,11 @@ public class Tramo {
 
     /** Logical reference to the origin depot (UUID) if applicable.  Nullable for origin. */
     @Column(name = "origen")
-    private Long origen;
+    private String origen;
 
     /** Logical reference to the destination depot (UUID) if applicable.  Nullable for final destination. */
     @Column(name = "destino")
-    private Long destino;
+    private String destino;
 
     /** Estimated cost for this segment. */
     @Column(name = "costo_aprox")

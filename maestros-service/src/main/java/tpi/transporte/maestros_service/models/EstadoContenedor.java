@@ -15,6 +15,7 @@ import lombok.Setter;
 public class EstadoContenedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_estado_contenedor")
     private Long id;
     
     @Column(name = "nombre")

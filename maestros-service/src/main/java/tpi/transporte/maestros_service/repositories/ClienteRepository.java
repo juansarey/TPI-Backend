@@ -1,5 +1,7 @@
 package tpi.transporte.maestros_service.repositories;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import tpi.transporte.maestros_service.models.Cliente;
@@ -9,4 +11,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     // ¡Eso es todo!
     // JpaRepository ya te da todos los métodos comunes:
     // save(), findById(), findAll(), delete(), etc.
+    
+    // Para verificar si un cliente ya existe antes de crearlo 
+    Optional<Cliente> findByTelefono(String telefono);
 }

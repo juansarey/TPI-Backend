@@ -10,12 +10,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CamionDTO {
-    private Long id;
+    private Long idCamion;
     private String nombreTransportista;
     private String telefono;
     private Double capacidadPesoKg;
     private Double capacidadVolumenM3;
     private Boolean disponibilidad;
     private Double costoBaseKm;
-    
 }
