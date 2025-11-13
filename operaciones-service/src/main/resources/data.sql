@@ -24,9 +24,12 @@ INSERT INTO ruta (cantidad_tramos, cantidad_depositos, id_solicitud) VALUES
   (2, 3, 2);
 
 -- Tramos correspondientes a la Ruta 1 (Solicitud 1)
-INSERT INTO tramo (camion_ref, origen, destino, costo_aprox, costo_real, fecha_hora_inicio_estimada, fecha_hora_inicio, fecha_hora_fin_estimada, fecha_hora_fin, id_ruta, id_tipo_tramo, id_estado_tramo)
+INSERT INTO tramo (camion_ref, origen, destino, costo_aprox, costo_real,
+                   fecha_hora_inicio_estimada, fecha_hora_inicio,
+                   fecha_hora_fin_estimada, fecha_hora_fin,
+                   id_ruta, id_tipo_tramo, id_estado)
 VALUES
-  -- Primer tramo de la ruta 1: origen al depósito
-  (201, 'Origen A', 'Deposito Central', 2000.0, NULL, '2025-10-01 08:00:00', NULL, '2025-10-02 08:00:00', NULL, 1, 1, 1),
-  -- Segundo tramo de la ruta 1: depósito al destino
-  (202, 'Deposito Central', 'Destino A', 3000.0, NULL, '2025-10-02 09:00:00', NULL, '2025-10-03 09:00:00', NULL, 1, 3, 1);
+  (201, 'Origen A', 'Deposito Central', 2000.0, NULL,
+   '2025-10-01 08:00:00', NULL, '2025-10-02 08:00:00', NULL, 1, 1, 1),
+  (202, 'Deposito Central', 'Destino A', 3000.0, NULL,
+   '2025-10-02 09:00:00', NULL, '2025-10-03 09:00:00', NULL, 1, 3, 1);

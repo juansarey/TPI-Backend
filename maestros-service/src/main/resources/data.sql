@@ -20,10 +20,11 @@ INSERT INTO estado_contenedor(nombre) VALUES
 ('Entregado en destino'),
 ('Pendiente de despacho');
 
-INSERT INTO contenedor(peso_kg, volumen_m3, id_estado_contenedor) VALUES
-(2000.0, 12.0, 1),
-(2500.0, 15.0, 2),
-(1800.0, 10.0, 3);
+INSERT INTO contenedor (peso_kg, volumen_m3, estado_contenedor_id, id_cliente) VALUES
+(2000.0, 12.0, 1, 1),
+(2500.0, 15.0, 2, 2),
+(1800.0, 10.0, 3, 3);
+
 
 INSERT INTO deposito (nombre, direccion, latitud, longitud, costo_diario) VALUES
 ('Deposito Central', 'Av. Central 1000', -34.6037, -58.3816, 150.0),
