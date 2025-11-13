@@ -24,7 +24,7 @@ public class CamionController {
     @Autowired
     private CamionService camionService;
 
-    //@Autowired
+    @Autowired
     private CamionMapper camionMapper;
 
     @GetMapping
