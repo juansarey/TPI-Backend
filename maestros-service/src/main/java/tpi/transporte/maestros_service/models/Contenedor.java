@@ -26,7 +26,9 @@ public class Contenedor {
     private Double volumenM3;
 
     @ManyToOne
+    @JoinColumn(name = "estado_contenedor_id", nullable = false)
     private EstadoContenedor estadoContenedor;
+
 
     // Relación: Muchos contenedores pertenecen a un cliente
     @ManyToOne(fetch = FetchType.LAZY)

@@ -33,7 +33,7 @@ spring:
 
   sql:
     init:
-      mode: embedded
+      mode: always
 
   jackson:
     time-zone: America/Argentina/Buenos_Aires
