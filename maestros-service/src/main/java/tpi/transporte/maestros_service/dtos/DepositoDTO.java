@@ -1,16 +1,11 @@
 package tpi.transporte.maestros_service.dtos;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+import lombok.Data;
+// Usamos @Data (incluye Getter, Setter, AllArgsConstructor, NoArgsConstructor, etc.)
+@Data
 public class DepositoDTO {
-    private Long idDeposito;
+    // Usamos publicId para la API, no el ID interno
+    private String publicId;
     private String nombre;
     private String direccion;
     private Double latitud;

@@ -1,16 +1,16 @@
 package tpi.transporte.maestros_service.dtos;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class TarifaDTO {
-    private Long idTarifa;
-    private double costoBaseFijo;
-    private double costoKm;
+    private String publicId;
+    private String descripcion;
+    private Double rangoVolumenMinM3;
+    private Double rangoVolumenMaxM3;
+    private Double rangoPesoMinKg;
+    private Double rangoPesoMaxKg;
+    // Renombrado de 'costoKm' a 'costoKmBase' para coincidir con la Entity
+    private Double costoKmBase;
+    private Double costoBaseFijo;
 }
