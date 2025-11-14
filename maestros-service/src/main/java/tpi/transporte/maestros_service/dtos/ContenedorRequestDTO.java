@@ -1,5 +1,7 @@
 package tpi.transporte.maestros_service.dtos;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Getter;
@@ -9,10 +11,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ContenedorDTO {
-    private Long idContenedor;
-    private double pesoKg;
-    private double volumenM3;
-    private EstadoContenedorDTO estado;
-    private Long idCliente;
+public class ContenedorRequestDTO implements Serializable {
+    private double peso;
+    private double volumen;
+    private Long clienteId;
+    private Long estadoId;
 }
