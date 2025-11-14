@@ -8,4 +8,5 @@ import lombok.Setter;
 public class EstadoContenedorDTO {
     private Long id;
     private String nombre;
+    
 }
