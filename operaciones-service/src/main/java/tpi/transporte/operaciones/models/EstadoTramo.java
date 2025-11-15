@@ -18,6 +18,4 @@ public class EstadoTramo {
     @Column(nullable = false, unique = true)
     private String nombre; // Ej: "PENDIENTE", "EN_CURSO", "FINALIZADO"
 
-    @Column
-    private String descripcion;
 }
