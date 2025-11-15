@@ -26,5 +26,7 @@ public interface SolicitudMapper {
     // Si el ID lo genera la BD, lo ignorás acá
     @Mapping(target = "idSolicitud", ignore = true)
     @Mapping(target = "ruta", ignore = true)   // la ruta se crea por separado
+    @Mapping(target = "costoEstimado", ignore = true) // se calcula/establece aparte
+    @Mapping(target = "tiempoEstimado", ignore = true) // se calcula/establece aparte
     Solicitud toEntity(SolicitudRequestDTO dto);
 }

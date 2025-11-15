@@ -12,5 +12,6 @@ import lombok.Setter;
 public class EstadoTramoDTO {
     private Long id;
     private String nombre;
+    private String descripcion;
     
 }

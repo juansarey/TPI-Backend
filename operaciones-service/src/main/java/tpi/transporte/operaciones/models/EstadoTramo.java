@@ -18,4 +18,6 @@ public class EstadoTramo {
     @Column(nullable = false, unique = true)
     private String nombre; // Ej: "PENDIENTE", "EN_CURSO", "FINALIZADO"
 
+    @Column  // <- añade esta propiedad para que exista la columna en la tabla
+    private String descripcion;
 }
