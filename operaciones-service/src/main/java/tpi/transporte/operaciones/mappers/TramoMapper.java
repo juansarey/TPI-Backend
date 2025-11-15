@@ -17,6 +17,11 @@ import tpi.transporte.operaciones.models.Tramo;
 public interface TramoMapper {
 
     // Entity -> ResponseDTO
+    @Mappings({
+        @Mapping(source = "ruta.id", target = "rutaId", nullValuePropertyMappingStrategy = org.mapstruct.NullValuePropertyMappingStrategy.IGNORE),
+        @Mapping(source = "tipoTramo.id", target = "tipoTramoId", nullValuePropertyMappingStrategy = org.mapstruct.NullValuePropertyMappingStrategy.IGNORE),
+        @Mapping(source = "estado.id", target = "estadoTramoId", nullValuePropertyMappingStrategy = org.mapstruct.NullValuePropertyMappingStrategy.IGNORE)
+    })
     TramoResponseDTO toResponseDTO(Tramo tramo);
 
     List<TramoResponseDTO> toResponseDTOList(List<Tramo> tramos);

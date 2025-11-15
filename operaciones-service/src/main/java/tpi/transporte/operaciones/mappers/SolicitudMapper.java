@@ -16,6 +16,8 @@ public interface SolicitudMapper {
     @Mapping(target = "cliente", ignore = true)      // se completa con RestTemplate
     @Mapping(target = "contenedor", ignore = true)   // se completa con RestTemplate
     @Mapping(target = "ruta", ignore = true)         // si la armás aparte
+    @Mapping(target = "costoFinal", ignore = true)   // se calcula dinámicamente con calcularCostoFinal()
+    @Mapping(target = "tiempoReal", ignore = true)   // se calcula dinámicamente con calcularTiempoReal()
     SolicitudResponseDTO toResponseDTO(Solicitud entity);
 
     List<SolicitudResponseDTO> toResponseDTOList(List<Solicitud> entities);
