@@ -4,12 +4,7 @@ import lombok.Data;
 
 @Data
 public class TarifaDTO {
-    private String idTarifa;
-    private String descripcion;
-    private Double rangoVolumenMinM3;
-    private Double rangoVolumenMaxM3;
-    private Double rangoPesoMinKg;
-    private Double rangoPesoMaxKg;
+    private Long idTarifa;
     // Renombrado de 'costoKm' a 'costoKmBase' para coincidir con la Entity
     private Double costoKmBase;
     private Double costoBaseFijo;
