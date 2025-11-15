@@ -11,18 +11,26 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TramoDTO {
-    private Long id;
+public class TramoRequestDTO {
+
+    // Id del camión en Maestros (se guarda en camionId)
     private Long camionId;
-    private Long origen;
-    private Long destino;
+
+    private String origen;
+    private String destino;
+
     private Double costoAprox;
-    private Double costoReal;
+    private Double costoReal; // puede venir null al crear
+
     private LocalDateTime fechaHoraInicioEstimada;
     private LocalDateTime fechaHoraInicio;
+
     private LocalDateTime fechaHoraFinEstimada;
     private LocalDateTime fechaHoraFin;
-    private RutaDTO rutaId;
-    private TipoTramoDTO tipoTramo;
-    private EstadoTramoDTO estadoTramo;
+
+    // Relaciones internas de Operaciones
+    private Long rutaId;
+    private Long tipoTramoId;
+    private Long estadoTramoId;
 }
+

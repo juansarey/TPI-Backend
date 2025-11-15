@@ -18,7 +18,7 @@ public class Solicitud {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_solicitud")
-    private Long id;
+    private Long idSolicitud;
 
     /** Logical reference to the client (UUID from Maestro). */
     @Column(name = "cliente_id")

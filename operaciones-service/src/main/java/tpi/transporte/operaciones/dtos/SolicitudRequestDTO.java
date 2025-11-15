@@ -9,12 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SolicitudDTO {
-    private Long id;
+public class SolicitudRequestDTO {
     private Long clienteId;
     private Long contenedorId;
     private Long tarifaId;
-    private Double costoEstimado;
-    private Double tiempoEstimado;
-    private RutaDTO ruta;
 }

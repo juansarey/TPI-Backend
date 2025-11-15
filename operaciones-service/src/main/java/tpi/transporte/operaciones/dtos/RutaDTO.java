@@ -16,5 +16,5 @@ public class RutaDTO {
     private Integer cantidadTramos;
     private Integer cantidadDepositos;
     private Long solicitudId;
-    private List<TramoDTO> tramos;
+    private List<TramoRequestDTO> tramos;
 }
