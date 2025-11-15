@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class TarifaDTO {
-    private String publicId;
+    private String idTarifa;
     private String descripcion;
     private Double rangoVolumenMinM3;
     private Double rangoVolumenMaxM3;

@@ -1,6 +1,7 @@
 package tpi.transporte.maestros_service.mappers;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import tpi.transporte.maestros_service.dtos.ClienteRequestDTO;
 import tpi.transporte.maestros_service.dtos.ClienteResponseDTO;
@@ -9,9 +10,12 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ClienteMapper {
-    ClienteResponseDTO toResponseDTO(Cliente cliente);
 
-    Cliente toEntity(ClienteRequestDTO dto);
-    
+    // Entity -> DTO
+    ClienteResponseDTO toResponseDTO(Cliente cliente);
     List<ClienteResponseDTO> toResponseDTOList(List<Cliente> clientes);
+
+    // DTO -> Entity (ignoramos la lista de contenedores)
+    @Mapping(target = "contenedores", ignore = true)
+    Cliente toEntity(ClienteRequestDTO dto);
 }

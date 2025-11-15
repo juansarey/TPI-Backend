@@ -9,7 +9,7 @@ import tpi.transporte.maestros_service.dtos.TarifaDTO;
 public interface TarifaMapper {
 
     @Mapping(source = "costoKm", target = "costoKmBase")
-    @Mapping(target = "publicId", ignore = true)
+    @Mapping(target = "idTarifa", ignore = true)
     @Mapping(target = "descripcion", ignore = true)
     @Mapping(target = "rangoVolumenMinM3", ignore = true)
     @Mapping(target = "rangoVolumenMaxM3", ignore = true)

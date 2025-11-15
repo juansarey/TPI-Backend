@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class DepositoDTO {
     // Usamos publicId para la API, no el ID interno
-    private String publicId;
+    private Long idDeposito;
     private String nombre;
     private String direccion;
     private Double latitud;

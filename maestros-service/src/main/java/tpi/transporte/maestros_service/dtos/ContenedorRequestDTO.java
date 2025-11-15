@@ -12,6 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ContenedorRequestDTO implements Serializable {
+    private Long idContenedor;
     private double peso;
     private double volumen;
     private Long clienteId;
