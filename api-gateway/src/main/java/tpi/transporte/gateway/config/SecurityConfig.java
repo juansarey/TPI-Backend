@@ -36,20 +36,48 @@ public class SecurityConfig {
         }
 
         http
-            .csrf(ServerHttpSecurity.CsrfSpec::disable)
-            .authorizeExchange(exchange -> exchange
-                .pathMatchers("/api/logistica/tramos-ruta/observer/estado").permitAll()
-                .pathMatchers("/api/logistica/solicitudes/{id}/resumen-cliente").hasAnyRole("cliente", "admin")
-                .pathMatchers(HttpMethod.POST, "/api/logistica/solicitudes").hasAnyRole("cliente", "admin")
-                .pathMatchers("/api/logistica/**").hasRole("admin")
-                .pathMatchers("/api/pedidos/contenedores/*/seguimiento").hasAnyRole("cliente", "admin")
-                .pathMatchers("/api/pedidos/contenedores/*").hasAnyRole("cliente", "admin")
-                .pathMatchers("/api/pedidos/**").hasRole("admin")
-                .anyExchange().authenticated()
-            )
-            .oauth2ResourceServer(oauth2 -> oauth2
-                .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
-            );
+    .csrf(ServerHttpSecurity.CsrfSpec::disable)
+    .authorizeExchange(exchange -> exchange
+        // 1. OPERACIONES – Solicitudes
+        .pathMatchers(HttpMethod.POST, "/operaciones/solicitudes").hasAnyRole("cliente","administrador")
+        .pathMatchers(HttpMethod.GET, "/operaciones/solicitudes/cliente/*").hasAnyRole("cliente","administrador")
+        .pathMatchers(HttpMethod.GET, "/operaciones/solicitudes/*/costo-final").hasAnyRole("cliente","administrador")
+        .pathMatchers(HttpMethod.GET, "/operaciones/solicitudes/*").hasAnyRole("cliente","administrador")
+        .pathMatchers("/operaciones/solicitudes").hasRole("administrador") // listar todas sólo admin
+        .pathMatchers(HttpMethod.PUT, "/operaciones/solicitudes/*").hasRole("administrador")
+        .pathMatchers(HttpMethod.DELETE, "/operaciones/solicitudes/*").hasRole("administrador")
+
+        // 2. OPERACIONES – Tramos
+        .pathMatchers(HttpMethod.POST, "/operaciones/tramos").hasRole("administrador")         // crear tramos
+        .pathMatchers(HttpMethod.DELETE, "/operaciones/tramos/*").hasRole("administrador")     // eliminar tramos
+        .pathMatchers("/operaciones/tramos/ruta/*").hasRole("administrador")                   // listar por ruta
+        .pathMatchers("/operaciones/tramos/*").hasRole("administrador")                        // obtener por id
+
+        .pathMatchers("/operaciones/tramos/camion/*").hasRole("transportista")         // ver tramos asignados
+        .pathMatchers(HttpMethod.POST, "/operaciones/tramos/*/iniciar").hasRole("transportista")
+        .pathMatchers(HttpMethod.POST, "/operaciones/tramos/*/finalizar").hasRole("transportista")
+
+        // 3. OPERACIONES – Catálogos (estados/tipos de tramo) y test
+        .pathMatchers("/operaciones/estados-tramo/**").permitAll()
+        .pathMatchers("/operaciones/tipos-tramo/**").permitAll()
+        .pathMatchers("/operaciones/test").permitAll()
+
+        // 4. MAESTROS – ABM de maestros (sólo admin)
+        .pathMatchers("/maestro/camiones/**").hasRole("administrador")
+        .pathMatchers("/maestro/clientes/**").hasRole("administrador")
+        .pathMatchers("/maestro/contenedores/**").hasRole("administrador")
+        .pathMatchers("/maestro/estados-contenedor/**").hasRole("administrador")
+        .pathMatchers("/maestro/tarifas/**").hasRole("administrador")
+        .pathMatchers("/maestro/depositos/**").hasRole("administrador")
+        .pathMatchers("/maestro/test").permitAll()
+
+        // cualquier otro intercambio requiere autenticación
+        .anyExchange().authenticated()
+    )
+    .oauth2ResourceServer(oauth2 -> oauth2
+        .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
+    );
+
 
         return http.build();
     }
