@@ -27,10 +27,6 @@ spring:
       enabled: true
       path: /h2
 
-      #sacar esta linea mas adelante si no se necesita acceso remoto al H2
-      settings:
-        web-allow-others: true  
-
   sql:
     init:
       mode: always

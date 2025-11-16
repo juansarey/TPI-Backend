@@ -24,6 +24,7 @@ spring:
             - StripPrefix=1
 
   security:
-    user:
-      name: user
-      password: password
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://auth-server:8080/realms/tpi-backend
